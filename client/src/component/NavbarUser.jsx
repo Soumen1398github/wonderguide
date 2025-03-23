@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function NavbarUser() {
   const [isLocation, setIsLocation] = useState(false);
@@ -9,135 +9,150 @@ function NavbarUser() {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">WonderGuide</span>
+        {/* Left Side - Logo */}
+        <a href="/" className="flex items-center space-x-3">
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            className="h-8"
+            alt="Flowbite Logo"
+          />
+          <span className="text-2xl font-semibold dark:text-white">
+            WonderGuide
+          </span>
         </a>
-        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</button>
-        </div>
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+
+        {/* Right Side - Sections and Logout */}
+        <div className="flex items-center space-x-8">
+          {/* Sections */}
+          <ul className="flex space-x-8 font-medium">
+            {/* Location Dropdown */}
             <li className="relative">
               <button
                 onClick={() => setIsLocation(!isLocation)}
-                className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                className="flex items-center text-gray-900 hover:text-blue-700 dark:text-white"
               >
                 Location
-                <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                <svg className="w-3 h-3 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
               {isLocation && (
-                <div className="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <div className="absolute z-50 bg-white shadow-md rounded-lg w-44 mt-2 dark:bg-gray-700">
                   <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add Location</a>
+                      <a href="/add-location" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Add Location
+                      </a>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View Locations</a>
+                      <a href="/view-location" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        View Locations
+                      </a>
                     </li>
                   </ul>
                 </div>
               )}
             </li>
-          </ul>
-        </div>
 
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            {/* Tour Guide Dropdown */}
             <li className="relative">
               <button
                 onClick={() => setIsTourGuide(!isTourGuide)}
-                className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                className="flex items-center text-gray-900 hover:text-blue-700 dark:text-white"
               >
                 Tour Guide
-                <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                <svg className="w-3 h-3 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
               {isTourGuide && (
-                <div className="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <div className="absolute z-50 bg-white shadow-md rounded-lg w-44 mt-2 dark:bg-gray-700">
                   <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add Tour Guide</a>
+                      <a href="/add-tour-guide" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Add Tour Guide
+                      </a>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View Tour Guide</a>
+                      <a href="/view-tour-guide" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        View Tour Guide
+                      </a>
                     </li>
                   </ul>
                 </div>
               )}
             </li>
-          </ul>
-        </div>
 
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            {/* Transport Dropdown */}
             <li className="relative">
               <button
                 onClick={() => setIsAddTransport(!isAddTransport)}
-                className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                className="flex items-center text-gray-900 hover:text-blue-700 dark:text-white"
               >
                 Transport
-                <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                <svg className="w-3 h-3 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
               {isAddTransport && (
-                <div className="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <div className="absolute z-50 bg-white shadow-md rounded-lg w-44 mt-2 dark:bg-gray-700">
                   <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add Transport</a>
+                      <a href="/add-transport" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Add Transport
+                      </a>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View Transports</a>
+                      <a href="/view-transport" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        View Transports
+                      </a>
                     </li>
                   </ul>
                 </div>
               )}
             </li>
-          </ul>
-        </div>
 
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            {/* Lodge Dropdown */}
             <li className="relative">
               <button
                 onClick={() => setIsAddLodge(!isAddLodge)}
-                className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                className="flex items-center text-gray-900 hover:text-blue-700 dark:text-white"
               >
                 Lodge
-                <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                <svg className="w-3 h-3 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
               {isAddLodge && (
-                <div className="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <div className="absolute z-50 bg-white shadow-md rounded-lg w-44 mt-2 dark:bg-gray-700">
                   <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add Lodge</a>
+                      <a href="/add-lodge" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Add Lodge
+                      </a>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View Lodges</a>
+                      <a href="/view-lodge" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        View Lodges
+                      </a>
                     </li>
                   </ul>
                 </div>
               )}
             </li>
-          </ul>
-        </div>
 
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li className="relative">
-              <button
-                className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-              >
+            {/* Tour Bookings */}
+            <li>
+              <a href="#" className="text-gray-900 hover:text-blue-700 dark:text-white">
                 Tour Bookings
-              </button>
+              </a>
             </li>
           </ul>
+
+          {/* Logout Button */}
+          <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700">
+            Logout
+          </button>
         </div>
       </div>
     </nav>

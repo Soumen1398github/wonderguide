@@ -5,12 +5,14 @@ import ImageSlider from "../component/ImageSlider";
 import Searchbar from "../component/Searchbar";
 import ResponsiveCard from "../component/Card";
 import NavbarUser from "../component/NavbarUser";
+import NavbarTourGuide from "../component/NavbarTourGuide";
 
 const Home = () => {
   return (
     <div>
-      
-      <NavbarUser/>
+      {/* <Navbar/> */}
+      {/* <NavbarUser/> */}
+      <NavbarTourGuide/>
       <ImageSlider />
       <Searchbar/>
       <ResponsiveCard/>
