@@ -1,39 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
+import { toast, ToastContainer } from "react-toastify";
+
 
 function RegisterUser() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    contactNo: "",
+    streetCity: "",
+    pincode: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/api/users/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Registration successful!");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error("Error registering user", error);
+      toast.error("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
+      <ToastContainer />
       <div className="flex items-center justify-center p-10">
         <div className="border border-gray-400 rounded-2xl p-10 w-full max-w-3xl bg-white shadow-xl">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="text-center text-2xl font-semibold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-xl px-5 py-2.5">
               Register Here!!
             </div>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div>
-                <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900">
+                <label htmlFor="firstName" className="block mb-2 text-sm font-medium text-gray-900">
                   First name
                 </label>
                 <input
                   type="text"
-                  id="first_name"
+                  id="firstName"
+                  name="firstName"
                   className="w-full p-2.5 border rounded-lg"
                   placeholder="John"
                   required
+                  onChange={handleChange}
                 />
               </div>
               <div>
-                <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900">
+                <label htmlFor="lastName" className="block mb-2 text-sm font-medium text-gray-900">
                   Last name
                 </label>
                 <input
                   type="text"
-                  id="last_name"
+                  id="lastName"
+                  name="lastName"
                   className="w-full p-2.5 border rounded-lg"
                   placeholder="Doe"
                   required
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -43,9 +84,11 @@ function RegisterUser() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   className="w-full p-2.5 border rounded-lg"
                   placeholder="example@gmail.com"
                   required
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -55,45 +98,38 @@ function RegisterUser() {
                 <input
                   type="password"
                   id="password"
+                  name="password"
                   className="w-full p-2.5 border rounded-lg"
                   placeholder="•••••••••"
                   required
+                  onChange={handleChange}
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900">
+                <label htmlFor="contactNo" className="block mb-2 text-sm font-medium text-gray-900">
                   Contact No
                 </label>
                 <input
                   type="text"
-                  id="phone"
+                  id="contactNo"
+                  name="contactNo"
                   className="w-full p-2.5 border rounded-lg"
-                  placeholder=""
                   required
+                  onChange={handleChange}
                 />
               </div>
               <div>
-                <label htmlFor="street" className="block mb-2 text-sm font-medium text-gray-900">
-                  Street
+                <label htmlFor="streetCity" className="block mb-2 text-sm font-medium text-gray-900">
+                  Street & City
                 </label>
                 <textarea
-                  id="street"
+                  id="streetCity"
+                  name="streetCity"
                   rows="2"
                   className="w-full p-2.5 border rounded-lg"
-                  placeholder=""
-                ></textarea>
-              </div>
-              <div>
-                <label htmlFor="city" className="block mb-2 text-sm font-medium text-gray-900">
-                  City
-                </label>
-                <input
-                  type="text"
-                  id="city"
-                  className="w-full p-2.5 border rounded-lg"
-                  placeholder=""
                   required
-                />
+                  onChange={handleChange}
+                ></textarea>
               </div>
               <div>
                 <label htmlFor="pincode" className="block mb-2 text-sm font-medium text-gray-900">
@@ -102,9 +138,10 @@ function RegisterUser() {
                 <input
                   type="text"
                   id="pincode"
+                  name="pincode"
                   className="w-full p-2.5 border rounded-lg"
-                  placeholder=""
                   required
+                  onChange={handleChange}
                 />
               </div>
             </div>

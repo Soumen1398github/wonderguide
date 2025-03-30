@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Searchbar from "./component/Searchbar";
@@ -23,8 +23,11 @@ import UpdateTourImages from "./component/TourGuide/UpdateTourImages";
 import UpdateMeals from "./component/TourGuide/UpdateMeals";
 import UpdateTourDetails from "./component/TourGuide/UpdateTourDetails";
 import MyTourBookings from "./component/TourGuide/MyTourBookings";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
+
+
   return (
     <BrowserRouter>
       <Routes>

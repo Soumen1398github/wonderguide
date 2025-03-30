@@ -1,30 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
-function Login() {
-    return (
-        <div className="min-h-screen bg-gray-100">
-            <Navbar/>
+
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("User");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SERVER}/api/users/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+
+      console.log(data)
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
+        toast.success("Login successful!");
+
+        setTimeout(() => {
+        navigate("/");
+        }, 2000);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error("Server error. Please try again.");
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
       <div className="flex items-center justify-center p-10">
         <div className="border border-gray-400 rounded-2xl p-10 w-full max-w-md bg-white shadow-xl">
-        
-          <form className="space-y-4">
-          <div className="text-center text-2xl font-semibold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-xl px-5 py-2.5">
+          <form className="space-y-4" onSubmit={handleLogin}>
+            <div className="text-center text-2xl font-semibold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-xl px-5 py-2.5">
               Login
             </div>
-            <div>
-              <label htmlFor="role" className="block mb-2 text-sm font-medium text-gray-900">
-                User Role
-              </label>
-              <select
-                id="role"
-                className="w-full p-2.5 border rounded-lg"
-                required
-              >
-                <option>User</option>
-                <option>Admin</option>
-                <option>Guide</option>
-              </select>
-            </div>
+       
             <div>
               <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                 Email Id
@@ -33,6 +57,8 @@ function Login() {
                 type="email"
                 id="email"
                 className="w-full p-2.5 border rounded-lg"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -44,6 +70,8 @@ function Login() {
                 type="password"
                 id="password"
                 className="w-full p-2.5 border rounded-lg"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
@@ -56,7 +84,8 @@ function Login() {
           </form>
         </div>
       </div>
-      </div>
-    );
-  }
-  export default Login;
+    </div>
+  );
+};
+
+export default Login;
